@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Include a swagger configuration-->
+    <bean name="/applicationSwaggerConfig" class="com.johuer.swagger.SwaggerConfig"/>
+
+    <!-- Required so springfox can access spring's RequestMappingHandlerMapping  -->
+    <mvc:annotation-driven/>
+
+    <!-- Required to enable Spring post processing on @Configuration classes. -->
+    <context:annotation-config/>
+
+    <!-- Scan some API controllers-->
+    <context:component-scan base-package="com.johuer.controller"/>
+
+    <!-- Enables swgger ui-->
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+
+</beans>
